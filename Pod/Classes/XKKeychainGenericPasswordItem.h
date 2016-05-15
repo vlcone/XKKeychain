@@ -10,6 +10,12 @@
 
 #import "XKKeychainDataAttribute.h"
 
+typedef NS_ENUM(NSUInteger, XKKeychainItemSynchronizationMode) {
+	XKKeychainItemSynchronizationModeAny,
+	XKKeychainItemSynchronizationModeNo,
+	XKKeychainItemSynchronizationModeYes
+};
+
 @interface XKKeychainGenericPasswordItem : XKKeychainItem
 
 + (instancetype)itemForService:(NSString *)service account:(NSString *)account error:(NSError **)error;
@@ -18,6 +24,8 @@
 
 + (BOOL)removeItemsForService:(NSString *)service error:(NSError **)error;
 + (BOOL)removeItemsForService:(NSString *)service accountPrefix:(NSString *)accountPrefix error:(NSError **)error;
+
+@property (nonatomic) XKKeychainItemSynchronizationMode synchronizationMode;
 
 @property (readonly, strong, nonatomic) NSDate *creationDate;
 @property (readonly, strong, nonatomic) NSDate *modificationDate;
